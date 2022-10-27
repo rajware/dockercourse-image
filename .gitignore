@@ -6,3 +6,10 @@ crash.log
 
 # For built boxes
 *.box
+
+# For input and output
+iso/
+output-*/
+
+# For keys
+keys/
