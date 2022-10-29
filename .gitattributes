@@ -1,0 +1,7 @@
+# Ensure script and template files use lf line endings
+buildhttp/*.hcl     text eol=lf
+buildhttp/*.sh      text eol=lf
+buildscripts/*.sh   text eol=lf
+
+attachments\manual-build\filesystem\usr\sbin\vbox-integration   text eol=lf
+attachments\filesystem\etc\motd                                 text eol=lf
