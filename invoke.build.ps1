@@ -17,7 +17,7 @@ Alpine base image: $($OSISOPath)
 
 # Synopsis: Show usage
 task . {
-    Write-Host "Usage: Invoke-Build vbox|keys|clean-vbox|clean-keys|clean"
+    Write-Host "Usage: Invoke-Build vbox|hyperv|keys|clean-vbox|clean-hyperv|clean-keys|clean"
 }
 
 # Synopsis: Build VirtualBox image
