@@ -27,6 +27,14 @@ task vbox -Outputs "output-matsya-vbox/Matsya-$($VersionString).ova" -Inputs mat
     }
 }
 
+# Synopsis: Build HyperV image
+task hyperv -Outputs "output-matsya-hyperv/Virtual Hard Disks/Matsya-$($VersionString).vhdx" -Inputs matsya-hyperv.pkr.hcl keys, {
+    exec {
+        packer build `-var "iso-url=$($OSISOPath)" `-var "iso-checksum=$($OSISOChecksum)" `-var "vm-version=$($VersionString)" `-var "vm-description=$($VMDescription)" matsya-hyperv.pkr.hcl
+    }
+}
+
+
 # Synopsis: Create key pair
 task keys -Outputs keys/rootcert.pub -If (-not (Test-Path keys/rootcert)) {
     New-Item -Path keys/ -ItemType Directory -ErrorAction Ignore
@@ -40,6 +48,11 @@ task clean-vbox {
     Remove-Item -Recurse -Force output-matsya-vbox -ErrorAction Ignore
 }
 
+# Synopsis: Delete built Hyper-V image
+task clean-hyperv {
+    Remove-Item -Recurse -Force output-matsya-hyperv -ErrorAction Ignore
+}
+
 # Synopsis: Delete key pair
 task clean-keys {
     Remove-Item -Recurse -Force keys -ErrorAction Ignore
@@ -47,4 +60,4 @@ task clean-keys {
 
 
 # Synopsis: Delete all output
-task clean clean-vbox, clean-keys
+task clean clean-vbox, clean-hyperv, clean-keys

@@ -26,6 +26,14 @@ output-matsya-vbox/Matsya.ova: matsya.pkr.hcl keys
 .PHONY: vbox
 vbox: output-matsya-vbox/Matsya.ova
 
+.PHONY: hyperv
+hyperv: matsya-hyperv.pkr.hcl 
+	packer build \
+		-var "iso-url=$(OS_ISO_PATH)" -var "iso-checksum=$(OS_ISO_CHECKSUM)" \
+		-var "vm-version=$(VERSION_STRING)" -var "vm-description=$$VM_DESCRIPTION" $<
+
+
+
 keys/rootcert:
 	ssh-keygen -C root@matsya -t ed25519 -f rootcert
 
@@ -38,10 +46,14 @@ keys: keys/rootcert.pub
 clean-vbox:
 	rm -rf output-matsya-vbox
 
+.PHONY: clean-hyperv
+clean-hyperv:
+	rm -rf output-matsya-hyperv
+
 .PHONY: clean-keys
 clean-keys:
 	rm -rf keys/
 
 .PHONY: clean
-clean: clean-vbox clean-keys
+clean: clean-vbox clean-hyperv clean-keys
 
