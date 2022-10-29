@@ -21,19 +21,18 @@ task . {
 }
 
 # Synopsis: Build VirtualBox image
-task vbox -Outputs "output-matsya-vbox/Matsya-$($VersionString).ova" -Inputs matsya.pkr.hcl keys, {
+task vbox -Outputs "output-matsya-vbox/Matsya-$($VersionString).ova" -Inputs matsya-vbox.pkr.hcl keys, {
     exec {
-        packer build `-only=matsya-vm.virtualbox-iso.matsya-vbox `-var "iso-url=$($OSISOPath)" `-var "iso-checksum=$($OSISOChecksum)" `-var "vm-version=$($VersionString)" `-var "vm-description=$($VMDescription)" matsya.pkr.hcl
+        packer build `-only=matsya-vm.virtualbox-iso.matsya-vbox `-var "iso-url=$($OSISOPath)" `-var "iso-checksum=$($OSISOChecksum)" `-var "vm-version=$($VersionString)" `-var "vm-description=$($VMDescription)" matsya-vbox.pkr.hcl
     }
 }
 
 # Synopsis: Build HyperV image
-task hyperv -Outputs "output-matsya-hyperv/Virtual Hard Disks/Matsya-$($VersionString).vhdx" -Inputs matsya-hyperv.pkr.hcl keys, {
+task hyperv -Outputs "output-matsya-hyperv/matsya-hyperv.zip" -Inputs matsya-hyperv.pkr.hcl keys, {
     exec {
         packer build `-var "iso-url=$($OSISOPath)" `-var "iso-checksum=$($OSISOChecksum)" `-var "vm-version=$($VersionString)" `-var "vm-description=$($VMDescription)" matsya-hyperv.pkr.hcl
     }
 }
-
 
 # Synopsis: Create key pair
 task keys -Outputs keys/rootcert.pub -If (-not (Test-Path keys/rootcert)) {
@@ -57,7 +56,6 @@ task clean-hyperv {
 task clean-keys {
     Remove-Item -Recurse -Force keys -ErrorAction Ignore
 }
-
 
 # Synopsis: Delete all output
 task clean clean-vbox, clean-hyperv, clean-keys

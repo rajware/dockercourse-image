@@ -16,23 +16,23 @@ export VM_DESCRIPTION
 
 .PHONY: usage
 usage:
-	@echo "Usage: make vbox|keys|clean-vbox|clean-keys|clean"
+	@echo "Usage: make vbox|hyperv|keys|clean-vbox|clean-hyperv|clean-keys|clean"
 
-output-matsya-vbox/Matsya.ova: matsya.pkr.hcl keys
-	packer build -only=matsya-vm.virtualbox-iso.matsya-vbox \
+output-matsya-vbox/Matsya.ova: matsya-vbox.pkr.hcl keys
+	packer build \
 		-var "iso-url=$(OS_ISO_PATH)" -var "iso-checksum=$(OS_ISO_CHECKSUM)" \
 		-var "vm-version=$(VERSION_STRING)" -var "vm-description=$$VM_DESCRIPTION" $<
 
 .PHONY: vbox
 vbox: output-matsya-vbox/Matsya.ova
 
-.PHONY: hyperv
-hyperv: matsya-hyperv.pkr.hcl 
+output-matsya-hyperv/matsya-hyperv.zip: matsya-hyperv.pkr.hcl keys
 	packer build \
 		-var "iso-url=$(OS_ISO_PATH)" -var "iso-checksum=$(OS_ISO_CHECKSUM)" \
 		-var "vm-version=$(VERSION_STRING)" -var "vm-description=$$VM_DESCRIPTION" $<
 
-
+.PHONY: hyperv
+hyperv: output-matsya-hyperv/matsya-hyperv.zip
 
 keys/rootcert:
 	ssh-keygen -C root@matsya -t ed25519 -f rootcert
@@ -56,4 +56,3 @@ clean-keys:
 
 .PHONY: clean
 clean: clean-vbox clean-hyperv clean-keys
-
