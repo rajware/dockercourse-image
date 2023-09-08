@@ -157,6 +157,13 @@ source "virtualbox-iso" "matsya-vbox" {
   # shut down using the following command.
   shutdown_command = "poweroff"
 
+  # VirtualBox 7 requires this addition setting for accessing
+  # the preseed file over http. Comment this out if using
+  # VirtualBox 6.
+  vboxmanage = [
+    ["modifyvm", "{{.Name}}", "--nat-localhostreachable1", "on"],
+  ]
+
 
   # The output file should be called Matsya.ova
   vm_name = "Matsya-${var.vm-version}"

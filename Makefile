@@ -1,7 +1,7 @@
 VERSION_MAJOR ?= 7
 VERSION_MINOR ?= 0
 BUILD_NUMBER  ?= 0
-PATCH_NUMBER  ?= -beta1
+PATCH_NUMBER  ?= -beta2
 VERSION_STRING = $(VERSION_MAJOR).$(VERSION_MINOR).$(BUILD_NUMBER)$(PATCH_NUMBER)
 
 OS_ISO_PATH ?= "iso/alpine-virt-3.16.2-x86_64.iso"
@@ -35,7 +35,7 @@ output-matsya-hyperv/matsya-hyperv.zip: matsya-hyperv.pkr.hcl keys
 hyperv: output-matsya-hyperv/matsya-hyperv.zip
 
 keys/rootcert:
-	ssh-keygen -C root@matsya -t ed25519 -f rootcert
+	cd ./keys && ssh-keygen -C root@matsya -t ed25519 -f rootcert
 
 keys/rootcert.pub: keys/rootcert
 

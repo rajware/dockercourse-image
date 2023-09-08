@@ -24,4 +24,4 @@ The steps described above can also be performed via a supplied makefile and GNU 
 
 ## Invoke-Build
 
-An [Invoke-Build](https://github.com/nightroman/Invoke-Build) is also available. `Invoke-Build keys` and `Invoke-Build vbox` can be used, instead of GNU make.
+An [Invoke-Build](https://github.com/nightroman/Invoke-Build) script is also available. `Invoke-Build keys` and `Invoke-Build vbox` can be used, instead of GNU make.

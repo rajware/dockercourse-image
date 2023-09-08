@@ -2,7 +2,7 @@ param(
     $VersionMajor  = (property VERSION_MAJOR "7"),
     $VersionMinor  = (property VERSION_MINOR "0"),
     $BuildNumber   = (property BUILD_NUMBER  "0"),
-    $PatchString   = (property PATCH_NUMBER  "-beta1"),
+    $PatchString   = (property PATCH_NUMBER  "-beta2"),
     $OSISOPath     = (property OS_ISO_PATH "iso/alpine-virt-3.16.2-x86_64.iso"),
     $OSISOChecksum = (property OS_ISO_CHECKSUM "md5:6e4443010ae82b2ba98fef801a7ec2b8")
 )
@@ -37,6 +37,7 @@ task hyperv -Outputs "output-matsya-hyperv/matsya-hyperv.zip" -Inputs matsya-hyp
 # Synopsis: Create key pair
 task keys -Outputs keys/rootcert.pub -If (-not (Test-Path keys/rootcert)) {
     New-Item -Path keys/ -ItemType Directory -ErrorAction Ignore
+    Set-Location -Path keys/
     exec {
         ssh-keygen -C root@matsya -t ed25519 -f keys/rootcert
     }
