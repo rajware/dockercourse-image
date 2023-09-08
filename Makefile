@@ -1,11 +1,11 @@
 VERSION_MAJOR ?= 7
 VERSION_MINOR ?= 0
 BUILD_NUMBER  ?= 0
-PATCH_NUMBER  ?= -beta2
+PATCH_NUMBER  ?= -beta3
 VERSION_STRING = $(VERSION_MAJOR).$(VERSION_MINOR).$(BUILD_NUMBER)$(PATCH_NUMBER)
 
-OS_ISO_PATH ?= "iso/alpine-virt-3.16.2-x86_64.iso"
-OS_ISO_CHECKSUM ?= "md5:6e4443010ae82b2ba98fef801a7ec2b8"
+OS_ISO_PATH ?= "iso/alpine-virt-3.18.3-x86_64.iso"
+OS_ISO_CHECKSUM ?= "sha256:925f6bc1039a0abcd0548d2c3054d54dce31cfa03c7eeba22d10d85dc5817c98"
 
 define VM_DESCRIPTION
 Matsya Image version $(VERSION_STRING)
@@ -35,7 +35,7 @@ output-matsya-hyperv/matsya-hyperv.zip: matsya-hyperv.pkr.hcl keys
 hyperv: output-matsya-hyperv/matsya-hyperv.zip
 
 keys/rootcert:
-	cd ./keys && ssh-keygen -C root@matsya -t ed25519 -f rootcert
+	mkdir -p keys 2>/dev/null && cd ./keys && ssh-keygen -C root@matsya -t ed25519 -f rootcert
 
 keys/rootcert.pub: keys/rootcert
 

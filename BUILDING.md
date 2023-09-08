@@ -1,20 +1,20 @@
 # Manual Build Instructions
 
 ## Specifications
-Alpine version 3.16.2-virtual with:
+Alpine version 3.18.3-virtual with:
   - Swap accounting on
   - sudo, curl, bash, bash-completion
-  - docker v20.10.20
-  - Compose plugin v2.12.2
-  - Buildx plugin v0.8.2
-  - Virtualbox guest additions
+  - docker v23.0.6
+  - Compose plugin v2.17.3
+  - Buildx plugin v0.10.4
+  - Virtualbox guest additions on VirtualBox
   - XOrg-base
   - XFCE 4
   - Chromium browser
   - MousePad editor
 
 ## Instructions for VirtualBox
-1. Download alpine-virt-3.16.2-x86_64.iso (Alpine "virtual" image) from https://alpinelinux.org/. 
+1. Download alpine-virt-3.18.3-x86_64.iso (Alpine "virtual" image) from https://alpinelinux.org/. 
 2. Create a virtual machine, with Type: Linux, Version: Other Linux (64-bit) and at least 2 Cores, 4GB RAM, 100GB hard disk and VMSVGA graphics controller with 16MB video memory. 
 3. Add Port Forwarding for the NAT network interface, with Host Port:50022 and Guest Port:22. 
 4. Mount the iso from step 1 on the CDROM device. 
@@ -27,7 +27,7 @@ Alpine version 3.16.2-virtual with:
 11. When the setup is over, issue the `poweroff` command. Go to VM settings and remove the ISO file from the CDROM device. Start the VM. Login as root.
 12. Edit **/etc/update-extlinux.conf**, and add 'swapaccount=1' to the variable **default_kernel_opts**. Change the value of the variable **timeout** to 1.
 13. Run `update-extlinux`. Reboot the VM with the `reboot` command. Log in as root.
-14. Edit **/etc/apk/repositories**. Uncomment the line ending in **v3.16/community**.
+14. Edit **/etc/apk/repositories**. Uncomment the line ending in **v3.18/community**.
 15. Run `apk update`.
 16. Run `apk add sudo`
 17. Use `visudo` to allow sudo access to "wheel" group.
@@ -51,7 +51,7 @@ Alpine version 3.16.2-virtual with:
 34. Copy the accompanying file **attachments/manual-build/filesystem/usr/sbin/vbox-integration** to **/usr/sbin/vbox-integration**. Run `chmod +x /usr/sbin/vbox-integration`.
 35. Run `setup-xorg-base`
 36. Run `apk add xfce4 xfce4-terminal gvfs xfce4-taskmanager xfce4-screenshooter`
-37. Run `apk add gnome-icon-theme adwaita-icon-theme`.
+37. Run `apk add adwaita-xfce-icon-theme`.
 38. Run `apk add dbus`
 39. Run `service dbus start`
 40. Run `startx`. Verify GUI is working.
@@ -80,7 +80,7 @@ Alpine version 3.16.2-virtual with:
 63. Export the VM as **matsya-7.0.0.ova**.
 
 ## Instructions for Hyper-V
-1. Download alpine-virt-3.16.2-x86_64.iso (Alpine "virtual" image) from https://alpinelinux.org/. 
+1. Download alpine-virt-3.18.3-x86_64.iso (Alpine "virtual" image) from https://alpinelinux.org/. 
 2. Create a virtual machine, with Generation: 2 and at least 2 Cores, 4GB RAM and 100GB hard disk. 
 3. Mount the iso from step 1 on the CDROM device. 
 4. Boot. Login as root, no password, and issue the `setup-alpine` command.
@@ -90,7 +90,7 @@ Alpine version 3.16.2-virtual with:
 8. When asked for preferred repository mirror, choose 1. Do NOT choose "fastest".
 9. When asked, create a user with full name:User 1, username: user1 and password: Pass@word1.
 10. When the setup is over, issue the `poweroff` command. Go to VM settings and remove the ISO file from the CDROM device. Start the VM. Login as root.
-11. Edit **/etc/apk/repositories**. Uncomment the line ending in **v3.16/community**.
+11. Edit **/etc/apk/repositories**. Uncomment the line ending in **v3.18/community**.
 12. Run `apk update`.
 13. Run `apk add sudo`
 14. Use `visudo` to allow sudo access to "wheel" group.
@@ -115,7 +115,7 @@ Alpine version 3.16.2-virtual with:
 33. Run `rc-update add hv_vss_daemon`.
 34. Run `setup-xorg-base`.
 35. Run `apk add xfce4 xfce4-terminal gvfs xfce4-taskmanager xfce4-screenshooter`.
-36. Run `apk add gnome-icon-theme adwaita-icon-theme`.
+36. Run `apk add adwaita-xfce-icon-theme`.
 37. Run `apk add dbus`
 38. Run `service dbus start`
 39. Edit **/etc/apk/repositories**. Uncomment the line ending in **edge/testing**.

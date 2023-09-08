@@ -6,7 +6,7 @@ setup-xorg-base
 echo "Installing XFCE, apps, dbus and lxdm"
 apk add xfce4 xfce4-terminal gvfs \
         xfce4-taskmanager xfce4-screenshooter \
-        gnome-icon-theme adwaita-icon-theme \
+        adwaita-xfce-icon-theme \
         mousepad chromium \
         dbus lxdm
 
