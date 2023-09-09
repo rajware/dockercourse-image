@@ -154,3 +154,13 @@ build {
     keep_input_artifact = true
   }
 }
+
+packer {
+  required_version = ">= 1.9.2"
+  required_plugins {
+    hyperv = {
+      source  = "github.com/hashicorp/hyperv"
+      version = "~> 1"
+    }
+  }
+}

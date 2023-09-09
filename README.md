@@ -4,7 +4,7 @@ VM image for the Rajware Docker course
 
 ![GitHub release (latest by date)](https://img.shields.io/github/v/release/rajware/dockercourse-image?include_prereleases)
 
-This repository contains build instructions and a Packer script for building VM images for the Docker course conducted by Rajware. Images can be built for VirtualBox and Hyper-V.
+This repository contains build instructions and Packer templates for building VM images for the Docker course conducted by Rajware. Images can be built for VirtualBox and Hyper-V.
 
 Each image contains a self-contained Alpine Linux installation with XFCE, and the open-source Docker Engine.
 

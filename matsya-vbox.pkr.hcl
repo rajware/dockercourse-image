@@ -209,3 +209,13 @@ build {
     ]
   }
 }
+
+packer {
+    required_version = ">= 1.9.2"
+    required_plugins {
+        virtualbox = {
+          version = "~> 1"
+          source  = "github.com/hashicorp/virtualbox"
+        }
+    }
+}
