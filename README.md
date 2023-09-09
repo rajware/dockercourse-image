@@ -8,7 +8,9 @@ This repository contains build instructions and a Packer script for building VM 
 
 Each image contains a self-contained Alpine Linux installation with XFCE, and the open-source Docker Engine.
 
-The Hyper-V image does not currently support clipboard sharing or dynamic resolution change. The VirtualBox image supports both.
+The VirtualBox image includes a display manager (LXDM), and is intended to be used from the VirtualBox UI directly. It offers a full GUI, with host clipboard integration. 
+
+The Hyper-V image does not include a display manager. It is intended to be used via an RDP connection (Windows Remote Desktop for example). It also offers, via the RDP client software, a full GUI with host clipboard integration.
 
 ## Building Images
 

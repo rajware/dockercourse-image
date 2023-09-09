@@ -3,19 +3,12 @@
 echo "Setting up xorg..."
 setup-xorg-base
 
-echo "Installing XFCE, apps, dbus and lxdm"
+echo "Installing XFCE, apps and dbus..."
 apk add xfce4 xfce4-terminal gvfs \
         xfce4-taskmanager xfce4-screenshooter \
         adwaita-xfce-icon-theme \
         mousepad chromium \
-        dbus lxdm
-
-echo "Configuring lxdm..."
-sed -i -e 's/^# session=.*$/session=\/usr\/bin\/startxfce4/' \
-        -e 's/^lang=1$/lang=0/' \
-        -e 's/^bottom_pane=.*$/bottom_pane=0/' \
-        -e 's/^bg=.*$/bg=\/usr\/share\/backgrounds\/matsya-background.jpeg/' \
-        /etc/lxdm/lxdm.conf
+        dbus
 
 echo "Configuring xfce..."
 sed -i -e 's/^WebBrowser=.*$/WebBrowser=chromium/' \
@@ -130,6 +123,5 @@ adduser user1 video
 adduser user1 dialout
 adduser user1 users
 
-echo "Adding dbus and lxdm to startup..."
+echo "Adding dbus to startup..."
 rc-update add dbus
-rc-update add lxdm

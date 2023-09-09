@@ -125,14 +125,6 @@ build {
     "sources.hyperv-iso.matsya-hyperv"
   ]
 
-  provisioner "file" {
-    sources = [
-      "attachments/filesystem/"
-    ]
-
-    destination = "/"
-  }
-
   provisioner "shell" {
     expect_disconnect = true
     scripts = [
@@ -147,6 +139,14 @@ build {
     environment_vars = [
       "VM_VERSION=${var.vm-version}"
     ]
+  }
+
+  provisioner "file" {
+    sources = [
+      "attachments/filesystem/"
+    ]
+
+    destination = "/"
   }
 
   post-processor "compress" {

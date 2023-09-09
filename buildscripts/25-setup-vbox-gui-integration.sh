@@ -1,5 +1,18 @@
 #!/bin/sh -e
 
+echo "Setting up lxdm..."
+apk add lxdm
+
+echo "Configuring lxdm..."
+sed -i -e 's/^# session=.*$/session=\/usr\/bin\/startxfce4/' \
+        -e 's/^lang=1$/lang=0/' \
+        -e 's/^bottom_pane=.*$/bottom_pane=0/' \
+        -e 's/^bg=.*$/bg=\/usr\/share\/backgrounds\/matsya-background.jpeg/' \
+        /etc/lxdm/lxdm.conf
+
+echo "Adding lxdm to startup..."
+rc-update add lxdm
+
 echo "Setting up VirtualBox integration..."
 
 cat >/usr/sbin/vbox-integration <<"ENDVBOXINTEGRATION"

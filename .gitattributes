@@ -5,3 +5,4 @@ buildscripts/*.sh   text eol=lf
 
 attachments/manual-build/filesystem/usr/sbin/vbox-integration   text eol=lf
 attachments/filesystem/etc/motd                                 text eol=lf
+attachments/filesystem/etc/xrdp/xrdp.ini                        text eol=lf

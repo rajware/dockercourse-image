@@ -1,8 +1,8 @@
 #!/bin/sh -e
 
-echo "Enabling testing repository..."
-sed -i -e 's/^#\(.*\/v.*\/testing\)$/\1/g' /etc/apk/repositories
+echo "Installing xrdp and xorgxrdp..."
+apk add xrdp xorgxrdp
 
-echo "Adding fbdev and vesa drivers"
-apk update && apk add xf86-video-fbdev xf86-video-vesa
-
+echo "Adding xrdp and xrdp-sesman to startup..."
+rc-update add xrdp
+rc-update add xrdp-sesman
