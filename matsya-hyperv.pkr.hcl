@@ -143,7 +143,7 @@ build {
 
   provisioner "file" {
     sources = [
-      "attachments/filesystem/"
+      "attachments/hyperv-filesystem/"
     ]
 
     destination = "/"

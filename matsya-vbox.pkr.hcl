@@ -177,7 +177,7 @@ build {
 
   provisioner "file" {
     sources = [
-      "attachments/filesystem/"
+      "attachments/vbox-filesystem/"
     ]
 
     destination = "/"

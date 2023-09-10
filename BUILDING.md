@@ -48,7 +48,7 @@ Alpine version 3.18.3-virtual with:
 31. If the last two steps have succeeded, run `rc-update add virtualbox-guest-additions` to ensure required VirtualBox guest functionality at startup.
 32. Run `adduser user1 vboxsf`.
 33. Reboot the VM. Login as root.
-34. Copy the accompanying file **attachments/manual-build/filesystem/usr/sbin/vbox-integration** to **/usr/sbin/vbox-integration**. Run `chmod +x /usr/sbin/vbox-integration`.
+34. Copy the accompanying file **attachments/manual-build-filesystem/usr/sbin/vbox-integration** to **/usr/sbin/vbox-integration**. Run `chmod +x /usr/sbin/vbox-integration`.
 35. Run `setup-xorg-base`
 36. Run `apk add xfce4 xfce4-terminal gvfs xfce4-taskmanager xfce4-screenshooter`
 37. Run `apk add adwaita-xfce-icon-theme`.
@@ -59,8 +59,8 @@ Alpine version 3.18.3-virtual with:
 42. Run `rc-update add dbus`.
 43. Run `apk add chromium mousepad`
 44. Run `apk add lxdm`
-45. Edit **/etc/lxdm/lxdm.conf**. Change the default session variable (line 10) to **session=/usr/bin/startxfce4**, the bottom_pane variable (line 40) to **bottom_pane=0** and the show language select control variable (line 43) to **lang=0**.
-46. Copy the accompanying file **attachments/manual-build/filesystem/etc/xdg/xfce4/panel/default.xml** to **/etc/xdg/xfce4/panel/default.xml**.
+45. Edit **/etc/lxdm/lxdm.conf**. Change the default session variable (line 10) to **session=/usr/bin/startxfce4**, the bottom_pane variable (line 40) to **bottom_pane=0** and the show language select control variable (line 43) to **lang=0**. Finally, change the bg variable (line 37) to **bg=/usr/share/backgrounds/matsya/matsya-background.jpeg**
+46. Copy the accompanying files **attachments/manual-build-filesystem/etc/xdg/xfce4/panel/default.xml** to **/etc/xdg/xfce4/panel/default.xml**, and **attachments/vbox-filesystem/usr/share/backgrounds/matsya/matsya-background.jpeg** to **/usr/share/backgrounds/matsya/matsya-background.jpeg**.
 47. Edit **/etc/xdg/xfce4/helpers.rc**. Change the WebBrowser variable (line 7) to **WebBrowser=chromium**.
 48. Edit **/etc/lxdm/PreLogin**. Add the following line: `/usr/sbin/vbox-integration`.
 49. Run `adduser user1 audio`
@@ -74,7 +74,7 @@ Alpine version 3.18.3-virtual with:
 57. Start Chromium. Verify it works. Close Chromium. 
 58. If everything works, log out, click "Shutdown" from the LXDM greeter screen, and run `rc-update add lxdm`.
 59. Reboot. Login as Root.
-60. Copy the accompanying file **attachments/filesystem/etc/motd** to **/etc/motd**.
+60. Copy the accompanying file **attachments/vbox-filesystem/etc/motd** to **/etc/motd**.
 61. Remove history by typing `history -c && rm ~/.bash_history` for user1 and `rm ~/.ash_history` for root. Shut down.
 62. Modify the VM icon using the accompanying file **attachments/icon/matsya.png**.
 63. Export the VM as **matsya-7.0.0.ova**.
@@ -119,14 +119,14 @@ Alpine version 3.18.3-virtual with:
 37. Run `apk add dbus`
 38. Run `service dbus start`
 39. Run `apk add xrdp xorgxrdp`
-40. Copy the accompanying file **attachments/filesystem/etc/xrdp/xrdp.ini** to **/etc/xrdp/xrdp.ini**, and **attachments/filesystem/usr/share/xrdp/xrdp_logo.bmp** to **/usr/share/xrdp/xrdp_logo.bmp**.
+40. Copy the accompanying files **attachments/hyperv-filesystem/etc/xrdp/xrdp.ini** to **/etc/xrdp/xrdp.ini**, and **attachments/hyperv-filesystem/usr/share/xrdp/xrdp_logo.bmp** to **/usr/share/xrdp/xrdp_logo.bmp**, and **attachments/hyperv-filesystem/usr/share/backgrounds/matsya/matsya-background.bmp** to **/usr/share/backgrounds/matsya/matsya-background.bmp**.
 41. Run `service xrdp start` 
 42. Run `service xrdp-sesman start`
 43. Run `rc-update add xrdp`
 44. Run `rc-update add xrdp-sesman`
 45. Run `rc-update add dbus`
 46. Run `apk add chromium mousepad`
-47. Copy the accompanying file **attachments/manual-build/filesystem/etc/xdg/xfce4/panel/default.xml** to **/etc/xdg/xfce4/panel/default.xml**.
+47. Copy the accompanying file **attachments/manual-build-filesystem/etc/xdg/xfce4/panel/default.xml** to **/etc/xdg/xfce4/panel/default.xml**.
 48. Edit **/etc/xdg/xfce4/helpers.rc**. Change the WebBrowser variable (line 7) to **WebBrowser=chromium**.
 49. Run `adduser user1 audio`
 50. Run `adduser user1 video`
@@ -137,6 +137,6 @@ Alpine version 3.18.3-virtual with:
 55. Start Chromium. Verify it works. Close Chromium. 
 56. If everything works, log out of the Remote Desktop session. Continue on the Hyper-V VM console. 
 57. Reboot. Login as Root.
-58. Copy the accompanying file **attachments/filesystem/etc/motd** to **/etc/motd**.
+58. Copy the accompanying file **attachments/hyperv-filesystem/etc/motd** to **/etc/motd**.
 59. Remove history by typing `history -c && rm ~/.bash_history` for user1 and `rm ~/.ash_history` for root. Shut down.
 60. Export the VM.

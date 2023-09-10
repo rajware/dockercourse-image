@@ -2,7 +2,7 @@ param(
     $VersionMajor  = (property VERSION_MAJOR "7"),
     $VersionMinor  = (property VERSION_MINOR "0"),
     $BuildNumber   = (property BUILD_NUMBER  "0"),
-    $PatchString   = (property PATCH_NUMBER  "-beta4"),
+    $PatchString   = (property PATCH_NUMBER  "-beta5"),
     $OSISOPath     = (property OS_ISO_PATH "iso/alpine-virt-3.18.3-x86_64.iso"),
     $OSISOChecksum = (property OS_ISO_CHECKSUM "sha256:925f6bc1039a0abcd0548d2c3054d54dce31cfa03c7eeba22d10d85dc5817c98")
 )
