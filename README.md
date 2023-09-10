@@ -8,9 +8,9 @@ This repository contains build instructions and Packer templates for building VM
 
 Each image contains a self-contained Alpine Linux installation with XFCE, and the open-source Docker Engine.
 
-The VirtualBox image includes a display manager (LXDM), and is intended to be used from the VirtualBox UI directly. It offers a full GUI, with host clipboard integration. 
+The VirtualBox image includes a display manager (LXDM), and is intended to be used from the VirtualBox UI directly. It offers a full GUI, with host clipboard integration. It can also be reached from the host via SSH, using hostname `localhost` and port 50022.
 
-The Hyper-V image does not include a display manager. It is intended to be used via an RDP connection (Windows Remote Desktop for example). It also offers, via the RDP client software, a full GUI with host clipboard integration.
+The Hyper-V image does not include a display manager. It is intended to be used via an RDP connection (Windows Remote Desktop for example). It also offers, via the RDP client software, a full GUI with host clipboard integration. It can also be reached from the host via SSH, using its IP address and port 22.
 
 ## Building Images
 
