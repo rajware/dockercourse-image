@@ -1,17 +1,17 @@
 # Before using this script, you need to obtain an alpine
 # "virt" ISO, and put it in a folder called "iso".
 # The iso name and its checksum should be updated here.
-# The last build used alpine 3.18.3.
+# The last build used alpine 3.21.2.
 variable "iso-url" {
   # Location of the alpine virt iso
   type    = string
-  default = "./iso/alpine-virt-3.18.3-x86_64.iso"
+  default = "./iso/alpine-virt-3.21.2-x86_64.iso"
 }
 
 variable "iso-checksum" {
   # Checksum of the alpine virt iso
   type    = string
-  default = "sha256:925f6bc1039a0abcd0548d2c3054d54dce31cfa03c7eeba22d10d85dc5817c98"
+  default = "sha256:e877549fb113ba93f89f3755742f3e5178ae66fb345bf6a74a9ddbe1e8bd2ec6"
 }
 
 # You should also generate a key pair (using openssh for
@@ -165,7 +165,7 @@ source "virtualbox-iso" "matsya-vbox" {
   ]
 
 
-  # The output file should be called Matsya.ova
+  # The output file should be called Matsya-VERSION.ova.
   vm_name = "Matsya-${var.vm-version}"
 }
 

@@ -12,7 +12,7 @@ The images for this repository can be built using HashiCorp [Packer](https://www
 
 1. Create a folder named `iso` in the current directory.
 2. Download an Alpine Linux "virtual" ISO file into this directory.
-3. Update the file `matsya.pkr.hcl` with the path and checksum of this file.
+3. Update the files `matsya-hyperv.pkr.hcl` and `matsya-vbox.pkr.hcl` with the path and checksum of this file.
 4. Create a directory named `keys` in the current directory. Generate a key pair file named `rootcert` in it, for example by running `ssh-keygen -C root@matsya -t ed25519 -f keys/rootcert` in this directory.
 5. Run `packer build matsya-vbox.pkr.hcl` or `packer build matsya-hyperv.pkr.hcl`. 
 
