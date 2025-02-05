@@ -1,36 +1,39 @@
 #!/bin/sh -e
 
-echo "Setting up lxdm..."
-apk add lxdm
-
-echo "Configuring lxdm..."
-sed -i -e 's/^# session=.*$/session=\/usr\/bin\/startxfce4/' \
-        -e 's/^lang=1$/lang=0/' \
-        -e 's/^bottom_pane=.*$/bottom_pane=0/' \
-        -e 's/^bg=.*$/bg=\/usr\/share\/backgrounds\/matsya\/matsya-background.jpeg/' \
-        /etc/lxdm/lxdm.conf
-
-echo "Adding lxdm to startup..."
-rc-update add lxdm
+echo "Setting up elogind..."
+apk add elogind polkit-elogind xfce-polkit
+rc-update add elogind
 
 echo "Setting up VirtualBox integration..."
 
-cat >/usr/sbin/vbox-integration <<"ENDVBOXINTEGRATION"
+cat >/usr/sbin/vbox-display-integration <<"ENDVBOXINTEGRATION"
 #!/bin/sh
-pgrep -fx "/usr/sbin/VBoxClient --clipboard" > /dev/null
-if [ $? -ne 0 ] ; then
-    /usr/sbin/VBoxClient --clipboard
-fi
-pgrep -fx "/usr/sbin/VBoxClient --draganddrop" > /dev/null
-if [ $? -ne 0 ] ; then
-    /usr/sbin/VBoxClient --draganddrop
-fi
 pgrep -fx "/usr/sbin/VBoxClient --vmsvga" > /dev/null
 if [ $? -ne 0 ] ; then
     /usr/sbin/VBoxClient --vmsvga
 fi
 ENDVBOXINTEGRATION
 
-chmod +x /usr/sbin/vbox-integration
+chmod +x /usr/sbin/vbox-display-integration
 
-printf "\n/usr/sbin/vbox-integration\n" >> /etc/lxdm/PreLogin
+echo "Setting up lightdm..."
+apk add lightdm lightdm-gtk-greeter
+
+echo "Configuring lightdm..."
+mkdir -p /etc/lightdm/lightdm.conf.d
+cat >/etc/lightdm/lightdm.conf.d/50-matsya.conf <<"ENDLIGHTDMCONF"
+[Seat:*]
+allow-user-switching=false
+display-setup-script=/usr/sbin/vbox-display-integration
+ENDLIGHTDMCONF
+
+cat >>/etc/lightdm/lightdm-gtk-greeter.conf <<"ENDGREETERCONF"
+
+# Added by Rajware setup
+background=/usr/share/backgrounds/matsya/matsya-background.jpeg
+user-background=false
+indicators=
+ENDGREETERCONF
+
+echo "Adding lighdm to startup..."
+rc-update add lightdm
