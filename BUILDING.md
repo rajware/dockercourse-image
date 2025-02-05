@@ -48,7 +48,7 @@ Alpine version 3.21.2-virtual with:
 31. If the last two steps have succeeded, run `rc-update add virtualbox-guest-additions` to ensure required VirtualBox guest functionality at startup.
 32. Run `adduser user1 vboxsf`
 33. Reboot the VM. Login as root.
-34. Copy the accompanying file **attachments/manual-build-filesystem/usr/sbin/vbox-integration** to **/usr/sbin/vbox-integration**. Run `chmod +x /usr/sbin/vbox-integration`.
+34. Copy the accompanying file **attachments/manual-build-filesystem/usr/sbin/vbox-display-integration** to **/usr/sbin/vbox-display-integration**. Run `chmod +x /usr/sbin/vbox-display-integration`.
 35. Run `setup-xorg-base`
 36. Run `apk add xfce4 xfce4-terminal gvfs xfce4-taskmanager xfce4-screenshooter`
 37. Run `apk add adwaita-xfce-icon-theme`
@@ -58,21 +58,26 @@ Alpine version 3.21.2-virtual with:
 41. If the GUI works, exit by choosing Log Out from the Applications menu.
 42. Run `rc-update add dbus`
 43. Run `apk add chromium mousepad`
-44. Run `apk add lxdm`
-45. Edit **/etc/lxdm/lxdm.conf**. Change the default session variable (line 10) to **session=/usr/bin/startxfce4**, the bottom_pane variable (line 40) to **bottom_pane=0** and the show language select control variable (line 43) to **lang=0**. Finally, change the bg variable (line 37) to **bg=/usr/share/backgrounds/matsya/matsya-background.jpeg**
-46. Copy the accompanying files **attachments/manual-build-filesystem/etc/xdg/xfce4/panel/default.xml** to **/etc/xdg/xfce4/panel/default.xml**, and **attachments/vbox-filesystem/usr/share/backgrounds/matsya/matsya-background.jpeg** to **/usr/share/backgrounds/matsya/matsya-background.jpeg**.
+44. Run `apk add elogind polkit-elogind xfce-polkit lightdm`
+45. Create or ensure a directory called **/etc/lightdm/lightdm.conf.d**. Copy the accompanying file **attachments/manual-build-filesystem/etc/lightdm/lightdn.conf.d/50-matsya.conf** to **/etc/lightdm/lightdn.conf.d/50-matsya.conf**.
+46. Copy the accompanying files **attachments/manual-build-filesystem/etc/xdg/xfce4/panel/default.xml** to **/etc/xdg/xfce4/panel/default.xml**, **attachments/manual-build-filesystem/etc/xdg/xfce4/xfconf/xfce-perchannel-xml/xfce4-session.xml** to **/etc/xdg/xfce4/xfconf/xfce-perchannel-xml/xfce4-session.xml**, and **attachments/vbox-filesystem/usr/share/backgrounds/matsya/matsya-background.jpeg** to **/usr/share/backgrounds/matsya/matsya-background.jpeg**.
 47. Edit **/etc/xdg/xfce4/helpers.rc**. Change the WebBrowser variable (line 7) to **WebBrowser=chromium**.
-48. Edit **/etc/lxdm/PreLogin**. Add the following line: `/usr/sbin/vbox-integration`.
+48. Edit **/etc/lightdm/lightdm-gtk-greeter.conf**. Add the following lines:
+      ```
+      background=/usr/share/backgrounds/matsya/matsya-background.jpeg
+      user-background=false
+      indicators=
+      ```
 49. Run `adduser user1 audio`
 50. Run `adduser user1 video`
 51. Run `adduser user1 dialout`
-52. Run `service lxdm start`
+52. Run `service lightdm start`
 53. Verify login as user1 is successful. 
 54. Put the VM window into full-screen mode. Put it back to normal mode and resize the window. Verify that the GUI resizes in all cases.
 55. Enable bidirectional shared clipboard on the VM. Verify that guest additions for shared clipboard has started by running `ps aux | grep "VBoxClient --clipboard"`. Test copy/paste in and out of the VM.
 56. Start a terminal and check if docker autocomplete is working. If not, run `shopt -q login_shell || echo source /etc/profile >> /home/user1/.bashrc` in the terminal, and close and restart the terminal. Check again.
 57. Start Chromium. Verify it works. Close Chromium. 
-58. If everything works, log out, click "Shutdown" from the LXDM greeter screen, and run `rc-update add lxdm`
+58. If everything works, log out, click "Shutdown" from the LXDM greeter screen, and run `rc-update add lightdm`
 59. Reboot. Login as Root.
 60. Copy the accompanying file **attachments/vbox-filesystem/etc/motd** to **/etc/motd**.
 61. Remove history by typing `history -c && rm ~/.bash_history` for user1 and `rm ~/.ash_history` for root. Shut down.
