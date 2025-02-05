@@ -15,7 +15,7 @@ echo "Adding user1 to docker group..."
 adduser user1 docker
 
 echo "Changing user1 full name and login shell"
-sed -i -e 's/^\(user1:.*:\d*:\d*:\)User1\(:.*:\)\/bin\/ash$/\1User 1\2\/bin\/bash/' \
+sed -i -e 's/^\(user1:.*:\d*:\d*:\)User1\(:.*:\)\/bin\/sh$/\1User 1\2\/bin\/bash/' \
        /etc/passwd
 
 echo "Adding docker to start..."
