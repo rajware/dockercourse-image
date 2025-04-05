@@ -39,7 +39,7 @@ task keys -Outputs keys/rootcert.pub -If (-not (Test-Path keys/rootcert)) {
     New-Item -Path keys/ -ItemType Directory -ErrorAction Ignore
     Set-Location -Path keys/
     exec {
-        ssh-keygen -C root@matsya -t ed25519 -f keys/rootcert
+        ssh-keygen -C root@matsya -t ed25519 -f rootcert
     }
 }
 
