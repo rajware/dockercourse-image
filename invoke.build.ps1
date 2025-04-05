@@ -1,6 +1,6 @@
 param(
-    $VersionMajor  = (property VERSION_MAJOR "7"),
-    $VersionMinor  = (property VERSION_MINOR "1"),
+    $VersionMajor  = (property VERSION_MAJOR "8"),
+    $VersionMinor  = (property VERSION_MINOR "0"),
     $BuildNumber   = (property BUILD_NUMBER  "0"),
     $PatchString   = (property PATCH_NUMBER  ""),
     $OSISOPath     = (property OS_ISO_PATH "iso/alpine-virt-3.21.2-x86_64.iso"),
