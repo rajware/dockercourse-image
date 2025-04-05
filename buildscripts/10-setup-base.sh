@@ -23,3 +23,8 @@ rc-update add docker
 
 echo "Changing passwords..."
 printf "root:Pass@word1\nuser1:Pass@word1" | chpasswd
+
+echo "Allowing TCP forwarding for sshd..."
+printf "\n\n# Added by Rajware setup\nMatch User user1\n\tAllowTcpForwarding yes\n" \
+       >> /etc/ssh/sshd_config
+

@@ -199,7 +199,8 @@ build {
           "buildscripts/20-setup-gui.sh",
           "buildscripts/25-setup-vbox-gui-integration.sh",
           "buildscripts/30-setup-extlinux.sh",
-          "buildscripts/40-stamp-release.sh"
+          "buildscripts/40-stamp-release.sh",
+          "buildscripts/50-pre-compact.sh"
         ]
       }
     }

@@ -15,7 +15,7 @@ iface lo inet loopback
 
 auto eth0
 iface eth0 inet dhcp
-    hostname alpine-test
+    hostname matsya
 "
 
 # Search domain of example.com, Google public nameserver
